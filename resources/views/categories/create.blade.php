@@ -4,18 +4,13 @@
     <div class="container">
         <div class="row">
             <h3>Nova categoria</h3>
-
-
             {!! Form::open(['route' => 'categories.store', 'class' => 'form']) !!}
 
-            <div class="form-group">
-                {!! Form::label('name', 'Nome') !!}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
+            @include('categories._form')
 
-            <div class="form-group">
+            {!! Html::openFormGroup() !!}
                 {!! Form::submit('Criar categoria', ['class' => 'btn btn-primary']) !!}
-            </div>
+            {!! Html::closeFormGroup() !!}
 
             {!! Form::close() !!}
         </div>
