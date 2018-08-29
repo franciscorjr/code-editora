@@ -30,11 +30,20 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
     ];
 });
 
+
+$factory->define(App\Author::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => ucfirst($faker->unique()->name),
+    ];
+});
+
 $factory->define(App\Book::class, function (Faker\Generator $faker) {
 
     return [
         'title' => ucfirst($faker->unique()->word),
         'subtitle' => $faker->word,
         'price' => $faker->numberBetween(0,10),
+        'author_id' => 1,
     ];
 });

@@ -11,4 +11,9 @@ class Book extends Model
         'subtitle',
         'price'
     ];
+
+
+    public function authors(){
+        return $this->hasOne(App\Author);
+    }
 }

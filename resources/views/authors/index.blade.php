@@ -3,35 +3,35 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Listagem de livros</h3>
-            <a href="{{route('books.create')}}" class="btn btn-primary">Novo livro</a>
+            <h3>Listagem de autores</h3>
+            <a href="{{route('authors.create')}}" class="btn btn-primary">Novo autor</a>
         </div>
         <div class="row">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Título</th>
+                    <th>Nome</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @foreach($books as $book)
+                @foreach($authors as $author)
                     <tr>
-                        <td>{{ $book->id }}</td>
-                        <td>{{ $book->title }}</td>
+                        <td>{{ $author->id }}</td>
+                        <td>{{ $author->name }}</td>
                         <td>
                             <ul class="list-inline">
-                                <li><a href="{{ route('books.edit', ['categorie' => $book->id]) }}">Editar</a></li>
+                                <li><a href="{{ route('authors.edit', ['categorie' => $author->id]) }}">Editar</a></li>
                                 <li>|</li>
                                 <li>
                                     <?php $deleteForm = "delete-form-{$loop->index}"; ?>
-                                    <a href="{{ route('books.destroy', ['book' => $book->id]) }}"
+                                    <a href="{{ route('authors.destroy', ['author' => $author->id]) }}"
                                        onclick="event.preventDefault();document.getElementById('{{$deleteForm}}').submit();">Excluir</a>
                                     {!! Form::open(['route' => [
-                                        'books.destroy',
-                                         'book' => $book->id
+                                        'authors.destroy',
+                                         'author' => $author->id
                                          ], 'method' => 'DELETE', 'id' => $deleteForm, 'style' => 'display:nome']) !!}
                                     {!! Form::close() !!}
                                 </li>
@@ -41,7 +41,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{ $books->links() }}
+            {{ $authors->links() }}
         </div>
     </div>
 @endsection
