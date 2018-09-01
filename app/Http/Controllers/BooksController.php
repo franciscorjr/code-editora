@@ -24,7 +24,9 @@ class BooksController extends Controller
     {
         $request['author_id'] = Auth::user()->id;
         Book::create($request->all());
-        return redirect()->route('books.index');
+        $url = $request->get('redirect_to', route('books.index'));
+        $request->session()->flash('message', 'Livro cadastrado com sucesso.');
+        return redirect()->to($url);
     }
 
     public function edit(Book $book)
@@ -37,16 +39,22 @@ class BooksController extends Controller
         if ($request['author_id'] ==  Auth::user()->id){
             $book->fill($request->all());
             $book->save();
+            $request->session()->flash('message', 'Livro alterado com sucesso.');
+        }else{
+            $request->session()->flash('message', 'Usuário sem permissão, açao bloqueada');
         }
 
-        return redirect()->route('books.index');
+        $url = $request->get('redirect_to', route('books.index'));
+        return redirect()->to($url);
     }
 
     public function destroy(Book $book)
     {
         if ($book->author_id == Auth::user()->id){
             $book->delete();
+            \Session::flash('message', 'Livro excluido com sucesso.');
         }
-        return redirect()->route('books.index');
+        \Session::flash('message', 'Usuário sem permissão, açao bloqueada.');
+        return redirect()->to(\URL::previous());
     }
 }

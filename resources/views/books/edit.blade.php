@@ -13,7 +13,7 @@
             @include('books._form')
 
             <div class="form-group">
-                {!! Form::submit('Criar livro', ['class' => 'btn btn-primary']) !!}
+                {!! Button::primary('Salvar livro')->submit() !!}
             </div>
 
             {!! Form::close() !!}

@@ -39,44 +39,30 @@ class CategoriesController extends Controller
     public function store(CategoryRequest $request)
     {
         Category::create($request->all());
-        return redirect()->route('categories.index');
+        $url = $request->get('redirect_to', route('categories.index'));
+        $request->session()->flash('message', 'Categoria cadastrada com sucesso.');
+        return redirect()->to($url);
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Category $category)
     {
         return view('categories.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CategoryRequest $request, Category $category)
     {
         $category->fill($request->all());
         $category->save();
-        return redirect()->route('categories.index');
+        $url = $request->get('redirect_to', route('categories.index'));
+        $request->session()->flash('message', 'Categoria alterada com sucesso.');
+        return redirect()->to($url);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Category $category
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index');
+        \Session::flash('message', 'Categoria excluida com sucesso.');
+        return redirect()->to(\URL::previous());
     }
 }

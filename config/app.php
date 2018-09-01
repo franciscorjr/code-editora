@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Code Editora',
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +169,7 @@ return [
          */
         //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        \Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Bootstrapper\BootstrapperL5ServiceProvider::class,
 
         //
 
