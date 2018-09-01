@@ -9,11 +9,12 @@ class Book extends Model
     protected $fillable = [
         'title',
         'subtitle',
-        'price'
+        'price',
+        'author_id'
     ];
 
 
-    public function authors(){
-        return $this->hasOne(App\Author);
+    public function users(){
+        return $this->hasOne(App\User);
     }
 }

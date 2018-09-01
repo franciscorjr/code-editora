@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Http\Requests\BookRequest;
+use Auth;
 
 class BooksController extends Controller
 {
@@ -21,6 +22,7 @@ class BooksController extends Controller
 
     public function store(BookRequest $request)
     {
+        $request['author_id'] = Auth::user()->id;
         Book::create($request->all());
         return redirect()->route('books.index');
     }
@@ -32,14 +34,19 @@ class BooksController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $book->fill($request->all());
-        $book->save();
+        if ($request['author_id'] ==  Auth::user()->id){
+            $book->fill($request->all());
+            $book->save();
+        }
+
         return redirect()->route('books.index');
     }
 
     public function destroy(Book $book)
     {
-        $book->delete();
+        if ($book->author_id == Auth::user()->id){
+            $book->delete();
+        }
         return redirect()->route('books.index');
     }
 }
