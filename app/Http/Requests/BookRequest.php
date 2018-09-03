@@ -13,6 +13,12 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
+        if($this->method() == 'PUT'){
+
+            return $this->route('book')->author_id == \Auth::user()->id;
+
+        }
+
         return true;
     }
 
