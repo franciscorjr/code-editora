@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace CodePub\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +16,7 @@ class Book extends Model implements TableInterface
 
 
     public function users(){
-        return $this->hasOne(App\User);
+        return $this->hasOne(CodePub\User);
     }
 
     /**

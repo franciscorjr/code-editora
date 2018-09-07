@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CodePub\Http\Controllers;
 
-use App\Models\Book;
-use App\Http\Requests\BookRequest;
-use App\Repositories\BookRepository;
+use CodePub\Models\Book;
+use CodePub\Http\Requests\BookRequest;
+use CodePub\Repositories\BookRepository;
 use Auth;
 use Illuminate\Config\Repository;
 

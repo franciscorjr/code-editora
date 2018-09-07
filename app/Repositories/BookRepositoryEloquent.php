@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories;
+namespace CodePub\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\BookRepository;
-use App\Models\Book;
-use App\Validators\BookValidator;
+use CodePub\Repositories\BookRepository;
+use CodePub\Models\Book;
+use CodePub\Validators\BookValidator;
 
 /**
  * Class BookRepositoryEloquent.
  *
- * @package namespace App\Repositories;
+ * @package namespace CodePub\Repositories;
  */
 class BookRepositoryEloquent extends BaseRepository implements BookRepository
 {
