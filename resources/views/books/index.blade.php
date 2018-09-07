@@ -6,6 +6,19 @@
             <h3>Listagem de livros</h3>
             {!! Button::primary('Novo livro')->asLinkTo(route('books.create')) !!}
         </div>
+        <br>
+        <div class="row">
+            {!! Form::model([compact('search')], ['class' => 'form-inline', 'method' => 'GET']) !!}
+                {!! Form::label('search', 'Pesquisar por título:', ['class' => 'control-label']) !!}
+                {!! Form::text('search', null, ['class' => 'form-control']) !!}
+
+
+            {!! Html::openFormGroup() !!}
+                {!! Button::primary('Buscar')->submit() !!}
+            {!! Html::closeFormGroup() !!}
+            {!! Form::close() !!}
+        </div>
+        <br>
         <div class="row">
             {!! 
                  Table::withContents($books->items())->striped()

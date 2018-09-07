@@ -10,6 +10,7 @@ use CodePub\Http\Requests\BookCreateRequest;
 use CodePub\Repositories\BookRepository;
 use Auth;
 use Illuminate\Config\Repository;
+use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
@@ -24,16 +25,15 @@ class BooksController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Request $request)
     {
-        $this->repository
-            ->pushCriteria(new FindByAuthorCriteria())
-            ->pushCriteria(new FindByTitleCriteria('Placeat'));
-
-        $this->repository->resetCriteria();
-
+        $search = $request->get('search');
         $books = $this->repository->paginate(10);
-        return view('books.index', compact('books'));
+        return view('books.index', compact('books','search'));
     }
 
     public function create()
