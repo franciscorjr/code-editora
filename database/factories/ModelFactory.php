@@ -33,10 +33,12 @@ $factory->define(\CodePub\Models\Category::class, function (Faker\Generator $fak
 
 $factory->define(\CodePub\Models\Book::class, function (Faker\Generator $faker) {
 
+    $repository = app(\CodePub\Repositories\UserRepository::class);
+    $author_id = $repository->all()->random()->id;
     return [
         'title' => ucfirst($faker->unique()->word),
         'subtitle' => $faker->word,
         'price' => $faker->numberBetween(0,10),
-        'author_id' => 1,
+        'author_id' => $author_id,
     ];
 });

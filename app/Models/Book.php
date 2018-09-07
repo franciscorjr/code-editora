@@ -14,6 +14,10 @@ class Book extends Model implements TableInterface
         'author_id'
     ];
 
+    public function author(){
+        return $this->belongsTo(User::class);
+    }
+
 
     public function users(){
         return $this->hasOne(CodePub\User);
