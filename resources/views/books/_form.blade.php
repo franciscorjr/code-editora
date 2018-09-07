@@ -16,8 +16,4 @@
     {!! Form::number('price', null, ['class' => 'form-control']) !!}
     {!! Form::error('price', $errors) !!}
 
-{!! Html::openFormGroup('author_id', $errors) !!}
-    {!! Form::hidden('author_id', null, ['class' => 'form-control']) !!}
-    {!! Form::error('author_id', $errors) !!}
-
 {!! Html::closeFormGroup() !!}

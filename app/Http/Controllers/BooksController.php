@@ -49,7 +49,8 @@ class BooksController extends Controller
 
     public function update(BookUpdateRequest $request, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $data = $request->except(['author_id']);
+        $this->repository->update($data, $id);
         $request->session()->flash('message', 'Livro alterado com sucesso.');
         $url = $request->get('redirect_to', route('books.index'));
         return redirect()->to($url);
