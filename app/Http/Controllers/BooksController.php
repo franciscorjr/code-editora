@@ -2,6 +2,8 @@
 
 namespace CodePub\Http\Controllers;
 
+use CodePub\Criteria\FindByAuthorCriteria;
+use CodePub\Criteria\FindByTitleCriteria;
 use CodePub\Http\Requests\BookUpdateRequest;
 use CodePub\Models\Book;
 use CodePub\Http\Requests\BookCreateRequest;
@@ -24,6 +26,12 @@ class BooksController extends Controller
 
     public function index()
     {
+        $this->repository
+            ->pushCriteria(new FindByAuthorCriteria())
+            ->pushCriteria(new FindByTitleCriteria('Placeat'));
+
+        $this->repository->resetCriteria();
+
         $books = $this->repository->paginate(10);
         return view('books.index', compact('books'));
     }
