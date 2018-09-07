@@ -45,11 +45,8 @@ class BooksController extends Controller
 
     public function destroy(Book $book)
     {
-        if ($book->author_id == Auth::user()->id){
-            $book->delete();
-            \Session::flash('message', 'Livro excluido com sucesso.');
-        }
-        \Session::flash('message', 'Usuário sem permissão, açao bloqueada.');
+        $book->delete();
+        \Session::flash('message', 'Livro excluido com sucesso.');
         return redirect()->to(\URL::previous());
     }
 }

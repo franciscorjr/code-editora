@@ -10,8 +10,8 @@
             {!!
                 Table::withContents($categories->items())->striped()
                     ->callback('Ações', function ($field, $category){
-                        $linkEdit = route('categories.edit', ['categorie' => $category->id]);
-                        $linkDestroy = route('categories.destroy', ['categorie' => $category->id]);
+                        $linkEdit = route('categories.edit', ['categories' => $category->id]);
+                        $linkDestroy = route('categories.destroy', ['categories' => $category->id]);
                         $deleteForm = "delete-form-{$category->id}";
                         $form = Form::open(['route' =>
                                         ['categories.destroy', 'category' => $category->id],

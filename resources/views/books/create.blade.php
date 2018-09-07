@@ -10,9 +10,9 @@
 
             @include('books._form')
 
-            <div class="form-group">
+            {!! Html::openFormGroup() !!}
                 {!! Button::primary('Criar livro')->submit() !!}
-            </div>
+            {!! Html::closeFormGroup() !!}
 
             {!! Form::close() !!}
         </div>
