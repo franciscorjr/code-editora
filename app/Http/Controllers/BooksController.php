@@ -2,8 +2,9 @@
 
 namespace CodePub\Http\Controllers;
 
+use CodePub\Http\Requests\BookUpdateRequest;
 use CodePub\Models\Book;
-use CodePub\Http\Requests\BookRequest;
+use CodePub\Http\Requests\BookCreateRequest;
 use CodePub\Repositories\BookRepository;
 use Auth;
 use Illuminate\Config\Repository;
@@ -32,7 +33,7 @@ class BooksController extends Controller
         return view('books.create');
     }
 
-    public function store(BookRequest $request)
+    public function store(BookCreateRequest $request)
     {
         $request['author_id'] = Auth::user()->id;
         $this->repository->create($request->all());
@@ -46,10 +47,9 @@ class BooksController extends Controller
         return view('books.edit', compact('book'));
     }
 
-    public function update(BookRequest $request, Book $book)
+    public function update(BookUpdateRequest $request, $id)
     {
-        $book->fill($request->all());
-        $book->save();
+        $this->repository->update($request->all(), $id);
         $request->session()->flash('message', 'Livro alterado com sucesso.');
         $url = $request->get('redirect_to', route('books.index'));
         return redirect()->to($url);

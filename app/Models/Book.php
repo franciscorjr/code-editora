@@ -30,7 +30,7 @@ class Book extends Model implements TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Título'];
+        return ['#', 'Título', 'Autor', 'Preço'];
     }
 
     /**
@@ -47,6 +47,10 @@ class Book extends Model implements TableInterface
                 return $this->id;
             case 'Título':
                 return $this->title;
+            case 'Autor':
+                return $this->author->name;
+            case 'Preço':
+                return $this->price;
         }
     }
 }
